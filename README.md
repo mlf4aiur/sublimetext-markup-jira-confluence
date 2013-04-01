@@ -34,6 +34,12 @@ The "Packages" directory is located at:
 Usage
 -----
 
+META data must give, and use newline to separate META data and content.
+
+* Space
+* Parent Title
+* Title
+
 Use Command Palette to run it, use `cmd+shift+P` then `Post page to Jira Confluence` to post local page to remote.
 
 [0]: https://github.com/trentm/python-markdown2

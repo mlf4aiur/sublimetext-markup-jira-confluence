@@ -34,13 +34,17 @@ The "Packages" directory is located at:
 Usage
 -----
 
-META data must give, and use newline to separate META data and content.
+META data must give, and put it on the head of document, use newline to separate META data and content.
+
+Example file: example.md, example.rst.
+
+META data:
 
 * Space
 * Parent Title
 * Title
 
-Use Command Palette to run it, use `cmd+shift+P` then `Post page to Jira Confluence` to post local page to remote.
+Use Command Palette to run it, use `cmd+shift+p` then `Post page to Jira Confluence` to post local page to remote.
 
 [0]: https://github.com/trentm/python-markdown2
 [1]: http://wbond.net/sublime_packages/package_control

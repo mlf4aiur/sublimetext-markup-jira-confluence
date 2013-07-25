@@ -1,13 +1,24 @@
 import sublime
 import sublime_plugin
-import markdown2
 import re
-from xmlrpclib import ServerProxy
 import socket
+
+try:
+    # python2
+    from xmlrpclib import ServerProxy
+    import markdown2
+except ImportError:
+    # python3
+    from xmlrpc.client import ServerProxy
+    import os
+    import sys
+    abspath = os.path.abspath(os.path.dirname(__file__))
+    sys.path.append(abspath)
+    import markdown2
 
 
 def markdown_to_html(content):
-    return markdown2.markdown(content).encode('utf-8')
+    return markdown2.markdown(content).encode('utf-8').decode()
 
 
 def rst_to_html(content):
@@ -54,13 +65,17 @@ class MarkupJiraConfluenceCommand(sublime_plugin.TextCommand):
                 elif re.match(r'[Tt]itle: *', entry):
                     meta['title'] = re.sub('[^:]*: *', '', entry)
             else:
-                content = tmp[x+1:]
+                content = tmp[x + 1:]
                 break
         return meta, content
 
     def get_token(self, username, password):
-        token = self.serv.confluence2.login(username, password)
-        return token
+        try:
+            token = self.serv.confluence2.login(username, password)
+            return token
+        except Exception:
+            sublime.message_dialog('Can not login Confluence')
+            return
 
     def get_page_by_title(self, token, space, title):
         try:
@@ -74,7 +89,7 @@ class MarkupJiraConfluenceCommand(sublime_plugin.TextCommand):
         try:
             parent_id = parent_page['id']
         except TypeError:
-            sublime.status_message('space not exist')
+            sublime.message_dialog('space or parent doesn\'t exist')
             raise
         page = self.get_page_by_title(token, space, title)
         if page:
@@ -93,18 +108,21 @@ class MarkupJiraConfluenceCommand(sublime_plugin.TextCommand):
         region = sublime.Region(0, self.view.size())
         contents = self.view.substr(region)
         meta, content = self.get_meta_and_content(contents)
+        # print('%r' % meta)
         new_content = self.markup_to_html('\n'.join(content))
         if not new_content:
             return
 
         settings = sublime.load_settings('MarkupJiraConfluence.sublime-settings')
         confluence_url = settings.get('confluence_url')
-        username = settings.get('confluence_username')
-        password = settings.get('confluence_password')
+        username = settings.get('username')
+        password = settings.get('password')
         socket.setdefaulttimeout(10)
         sublime.status_message('posting...')
         self.serv = ServerProxy(confluence_url)
         token = self.get_token(username, password)
+        if not token:
+            return
         space = meta.get('space')
         parent_title = meta.get('parent_title')
         title = meta.get('title')

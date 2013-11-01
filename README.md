@@ -14,7 +14,7 @@ Installation
 **Use sublime package manager**
 
  - you should use [sublime package manager][1]
- - use `cmd+shift+P` then `Package Control: Install Package`
+ - use `cmd+shift+p` then `Package Control: Install Package`
  - look for `Jira Confluence` and install it.
 
 **Manually**
@@ -22,7 +22,7 @@ Installation
 At the moment Git is required to install the plugin.  You will need
 to clone the repository in your Sublime Text "Packages" directory:
 
-`git clone git@github.com:mlf4aiur/sublimetext-markup-jira-confluence.git`
+`git clone git@github.com:mlf4aiur/sublimetext-markup-jira-confluence.git "Markup Jira Confluence"`
 
 The "Packages" directory is located at:
 

@@ -73,8 +73,9 @@ class MarkupJiraConfluenceCommand(sublime_plugin.TextCommand):
         try:
             token = self.serv.confluence2.login(username, password)
             return token
-        except Exception:
+        except Exception as error:
             sublime.message_dialog('Can not login Confluence')
+            print(error)
             return
 
     def get_page_by_title(self, token, space, title):

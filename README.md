@@ -1,7 +1,7 @@
-Post markup to Jira Confluence
-==============================
+Markup to Confluence - Sublime Text 2/3
+=======================================
 
-This is a simple plugin for sublime text to POST markup to Jira Confluence.
+A plugin for post markup to Confluence in Sublime 2/3.
 
 Support markup language:
 
@@ -26,9 +26,9 @@ to clone the repository in your Sublime Text "Packages" directory:
 
 The "Packages" directory is located at:
 
-* OS X: `~/Library/Application Support/Sublime Text 2/Packages/`
-* Linux: `~/.Sublime Text 2/Packages/`
-* Windows: `%APPDATA%/Sublime Text 2/Packages/`
+* OS X: `~/Library/Application Support/Sublime Text */Packages/`
+* Linux: `~/.Sublime Text */Packages/`
+* Windows: `%APPDATA%/Sublime Text */Packages/`
 
 
 Usage

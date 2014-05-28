@@ -49,6 +49,7 @@ Use Command Palette to run it, use `cmd+shift+p` then `Post page to Jira Conflue
 BTW
 ---
 
+Confluence support buildin markup(Textile like) and markdown syntax insert. On the Confluence edit mode, press command + shift + D, to insert markup text.
 
 [0]: https://github.com/trentm/python-markdown2
 [1]: http://wbond.net/sublime_packages/package_control

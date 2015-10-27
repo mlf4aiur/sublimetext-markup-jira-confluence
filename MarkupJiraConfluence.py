@@ -37,10 +37,10 @@ class MarkupJiraConfluenceCommand(sublime_plugin.TextCommand):
 
     def __init__(self, view):
         self.view = view
-        self.markups = dict(
-            Markdown=markdown_to_html,
-            reStructuredText=rst_to_html)
-
+        self.markups = dict([
+            ('Markdown', markdown_to_html),
+            ('reStructuredText', rst_to_html),
+            ('Markdown Extended', markdown_to_html)])
     def markup_to_html(self, content):
         syntax = self.view.settings().get('syntax')
         syntax = syntax.split('.')[0].split('/')[-1]

@@ -3,6 +3,8 @@ Markup to Confluence - Sublime Text 2/3
 
 A plugin for post markup to Confluence in Sublime 2/3.
 
+This plugin is **deprecated**, recommend to use the rewrite [plugin](https://github.com/mlf4aiur/SublimeConfluence).
+
 Support markup language:
 
 * markdown depend on [python-markdown2][0]
